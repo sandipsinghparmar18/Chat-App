@@ -3,111 +3,82 @@ import { FaPenAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+	// Simulating authentication check (Replace with actual auth logic)
+	const isAuthenticated = localStorage.getItem("token") !== null;
+
 	return (
-		<div className="w-full min-h-32  shadow-gray-950 shadow-inner flex flex-col justify-between items-start px-4 py-8 bg-slate-800 text-white">
-			<h1 className="font-bold text-lg flex items-center gap-4">
+		<footer className="w-full bg-slate-800 text-white p-4 flex flex-col sm:flex-row justify-between items-center shadow-inner">
+			<div className="flex items-center gap-2 text-lg font-bold">
 				<span>Chat Application</span>
-				<FaPenAlt fontSize={16} />
-			</h1>
-			<div className="flex items-center justify-start w-full p-4 flex-wrap">
-				<div className="flex flex-col min-w-[280px] w-[33%] my-3">
-					<h1 className="font-semibold mb-2">Contact</h1>
-					<span>Akash Deep</span>
-					<span>Patna, Bihar</span>
-					<span>Pincode - 801303</span>
-					<span>
+				<FaPenAlt fontSize={18} />
+			</div>
+
+			<div className="flex flex-wrap justify-center sm:justify-between w-full sm:w-auto text-base mt-3 sm:mt-0">
+				<Link
+					className="mx-3 font-semibold transition-colors duration-300 hover:text-blue-400 hover:scale-105"
+					to={"/"}
+				>
+					Home
+				</Link>
+
+				{!isAuthenticated ? (
+					// Show Sign In & Sign Up when NOT logged in
+					<>
 						<Link
-							to={"mailto:contact.akashdeep023@gmail.com"}
-							target="_blank"
-							className="hover:text-blue-600 hover:underline"
-						>
-							contact.akashdeep023@gmail.com
-						</Link>
-					</span>
-				</div>
-				<div className="flex flex-col min-w-[280px] w-[33%] my-3">
-					<h1 className="font-semibold mb-2">Pages</h1>
-					<span>
-						<Link
-							className="hover:text-blue-600 hover:underline"
-							to={"/"}
-						>
-							Chat App
-						</Link>
-					</span>
-					<span>
-						<Link
-							className="hover:text-blue-600 hover:underline"
+							className="mx-3 font-semibold transition-colors duration-300 hover:text-green-400 hover:scale-105"
 							to={"/signin"}
 						>
-							SignIn
+							Sign In
 						</Link>
-					</span>
-					<span>
 						<Link
-							className="hover:text-blue-600 hover:underline"
+							className="mx-3 font-semibold transition-colors duration-300 hover:text-yellow-400 hover:scale-105"
 							to={"/signup"}
 						>
-							SignUp
+							Sign Up
 						</Link>
-					</span>
-					<span>
-						<Link
-							className="hover:text-blue-600 hover:underline"
-							to={"/home"}
-						>
-							Home
-						</Link>
-					</span>
-				</div>
-				<div className="flex flex-col min-w-[280px] w-[33%] my-3">
-					<h1 className="font-semibold mb-2">Links</h1>
-					<span>
+					</>
+				) : (
+					// Show LinkedIn & Instagram when logged in
+					<>
 						<a
-							className="hover:text-blue-600 hover:underline"
-							href="https://www.linkedin.com/in/akashdeep023/"
+							className="mx-3 font-semibold transition-colors duration-300 hover:text-blue-500 hover:scale-105"
+							href="https://www.linkedin.com/in/sandip-singh-parmar-b29034251"
 							target="_blank"
 							rel="noreferrer"
 						>
 							LinkedIn
 						</a>
-					</span>
-					<span>
 						<a
-							className="hover:text-blue-600 hover:underline"
-							href="https://github.com/akashdeep023/"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Github
-						</a>
-					</span>
-					<span>
-						<a
-							className="hover:text-blue-600 hover:underline"
-							href="https://instagram.com/akashdeep023_/"
+							className="mx-3 font-semibold transition-colors duration-300 hover:text-pink-400 hover:scale-105"
+							href="https://instagram.com/sandip_.visuals/"
 							target="_blank"
 							rel="noreferrer"
 						>
 							Instagram
 						</a>
-					</span>
-					<span>
-						<a
-							className="hover:text-blue-600 hover:underline"
-							href="mailto:contact.akashdeep023@gmail.com"
-							target="_blank"
-							rel="noreferrer"
-						>
-							E-Mail
-						</a>
-					</span>
-				</div>
+					</>
+				)}
+
+				<a
+					className="mx-3 font-semibold transition-colors duration-300 hover:text-purple-400 hover:scale-105"
+					href="https://github.com/sandipsinghparmar18/"
+					target="_blank"
+					rel="noreferrer"
+				>
+					GitHub
+				</a>
+				<a
+					className="mx-3 font-semibold transition-colors duration-300 hover:text-red-400 hover:scale-105"
+					href="mailto:sandipsinghparmar18@gmail.com"
+				>
+					E-Mail
+				</a>
 			</div>
-			<h1 className="font-bold">
-				All rights reserved 2024 &copy; ChatApp
-			</h1>
-		</div>
+
+			<p className="text-sm text-gray-400 mt-3 sm:mt-0">
+				&copy; 2024 ChatApp. All rights reserved.
+			</p>
+		</footer>
 	);
 };
 
