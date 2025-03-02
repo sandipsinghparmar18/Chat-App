@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const {uploadOnCloudinary,deleteFromCloudinary} = require("../utils/cloudinary.js")
+const { ApiResponse } = require("../utils/ApiResponse.js");
 
 const getAuthUser = async (req, res) => {
 	if (!req.user) {
@@ -22,7 +23,8 @@ const uploadUserProfile = async (req, res) => {
 	if (!req.user) {
         return res.status(400).json({ message: "No User Found" });
     }
-	const profileLocalPath=req.file?.path;
+    const profileLocalPath = req.file?.path; // req.file contains the uploaded file from the frontend
+    //console.log(profileLocalPath);
 	if (!profileLocalPath) {
         return res.status(400).json({ message: "No file uploaded" });
     }
@@ -55,7 +57,9 @@ const uploadUserProfile = async (req, res) => {
         return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ data: user});
+    res.status(200).json(
+        new ApiResponse(200,user,"profile updated Successfully")
+    );
 };
 
 module.exports = { getAuthUser, getAllUsers, uploadUserProfile };
